@@ -1,0 +1,36 @@
+{
+  "name": "@dreamworld/dw-ellipsis",
+  "version": "0.0.0-development",
+  "description": "An Element to shows ellipsis when it's text overflows (single line); and on hover shows full-text in the tooltip. Tooltip isn't shown when no ellipsis is applied to the text.",
+  "main": "dw-ellipsis.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:DreamworldSolutions/dw-ellipsis.git"
+  },
+  "author": "Nirmal Baldaniya",
+  "license": "MIT",
+  "dependencies": {
+    "@dreamworld/pwa-helpers": "^1.8.0",
+    "@webcomponents/webcomponentsjs": "2.2.10"
+  },
+  "devDependencies": {
+    "semantic-release": "17.0.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "master",
+      {
+        "name": "feature/*",
+        "prerelease": "${name.replace(/^feature\\//g,\"\")}",
+        "channel": "${name.replace(/^feature\\//g,\"\")}"
+      }
+    ]
+  }
+}
