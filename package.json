@@ -4,7 +4,8 @@
   "description": "An Element to shows ellipsis when it's text overflows (single line); and on hover shows full-text in the tooltip. Tooltip isn't shown when no ellipsis is applied to the text.",
   "main": "dw-ellipsis.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "wds --node-resolve --app-index demo/index.html --open --watch"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
     "@webcomponents/webcomponentsjs": "2.2.10"
   },
   "devDependencies": {
+    "@web/dev-server": "^0.1.34",
     "semantic-release": "17.0.8"
   },
   "publishConfig": {
