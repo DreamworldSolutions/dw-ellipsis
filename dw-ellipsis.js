@@ -1,5 +1,5 @@
 import { LitElement, html, css } from "@dreamworld/pwa-helpers/lit.js";
-
+import '@dreamworld/dw-tooltip';
 /**
  * Purpose: Shows ellipsis & full text in tooltip when it overflows.
  *
@@ -26,19 +26,49 @@ export class DwEllipsis extends LitElement {
     this.addEventListener("mouseleave", this._hideTooltip);
   }
 
-  render() {
-    return html` <slot></slot> `;
+  get _tooltipTemplate() {
+    if(!this._toolTipText){
+      return;
+    }
+    return html`
+    <dw-tooltip
+         trigger="manual"
+        .forEl=${this}
+        .offset=${[0, 8]}
+        .extraOptions=${{ delay: [500, 0]}}
+        .content=${this._toolTipText}>
+    </dw-tooltip>
+    `
   }
 
+  get _toolTipEl(){
+    return this.renderRoot.querySelector('dw-tooltip');
+    }
+
+  render() {
+    return html` 
+    <slot></slot>
+    ${this._tooltipTemplate}
+    `;
+  }
   /**
    * When text overflows, shows text content in tooltip.
    */
-  _showTooltip() {}
+  async _showTooltip() {
+    this._toolTipText = "ujjval";
+    await this.updateComplete;
+    this._toolTipEl && this._toolTipEl.show();
+
+  }
 
   /**
    * When tooltip text is set, hides tooltip.
    */
-  _hideTooltip() {}
+  async _hideTooltip() {
+    this._toolTipText = "";
+    await this.updateComplete;
+    this._tooltipEl && this._tooltipEl.hide();
+  }
 }
 
 customElements.define("dw-ellipsis", DwEllipsis);
