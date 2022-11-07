@@ -9,6 +9,63 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined&display=block" rel="stylesheet">
+  <style>
+     .tippy-box[data-theme='material'] {
+        background: #505355;
+        border-radius: 4px;
+        color: #fff;
+        padding: 8px;
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.4px;
+        line-height: 16px;
+      }
+
+      .tippy-box[data-placement^='top'] .tippy-arrow {
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        bottom: -10px;
+      }
+
+      .tippy-box[data-theme='material'][data-placement^='top'] .tippy-arrow {
+        border-top: 10px solid #505355;
+      }
+
+      .tippy-box[data-placement^='bottom'] .tippy-arrow {
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        top: -8px;
+      }
+
+      .tippy-box[data-theme='material'][data-placement^='bottom'] .tippy-arrow {
+        border-bottom: 10px solid #505355;
+      }
+
+      .tippy-box[data-animation='shift-away'][data-state='hidden'] {
+        opacity: 0;
+      }
+
+      .tippy-box[data-animation='shift-away'][data-state='hidden'][data-placement^='top'] {
+        transform: translateY(10px);
+      }
+
+      .tippy-box[data-animation='shift-away'][data-state='hidden'][data-placement^='bottom'] {
+        transform: translateY(-10px);
+      }
+
+      .tippy-box[data-animation='shift-away'][data-state='hidden'][data-placement^='left'] {
+        transform: translateX(10px);
+      }
+
+      .tippy-box[data-animation='shift-away'][data-state='hidden'][data-placement^='right'] {
+        transform: translateX(-10px);
+      }
+
+      .tippy-box *[hidden],
+      .tippy-box [hidden] {
+        display: none !important;
+      }
+  </style>
 </head>
 
 <body>

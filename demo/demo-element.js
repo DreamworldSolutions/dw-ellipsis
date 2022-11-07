@@ -6,7 +6,11 @@ class DemoElement extends LitElement {
     return [
       css`
         :host{
-          display: block;
+          display:block;
+        }
+
+        .first { 
+          width: 50px;
         }
       `
     ]
@@ -14,7 +18,7 @@ class DemoElement extends LitElement {
   render() {
     return html`
       <h2>dw-ellipsis Demo:</h2>
-      <dw-ellipsis><strong>Hello World. Hello World</strong></dw-ellipsis>
+      <dw-ellipsis class="first"><strong>Hello World. Hello World</strong></dw-ellipsis><br>
       <dw-ellipsis><strong>Hello World. Hello World</strong></dw-ellipsis>
     `
   }

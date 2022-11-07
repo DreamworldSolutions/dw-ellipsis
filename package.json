@@ -14,8 +14,8 @@
   "author": "Nirmal Baldaniya",
   "license": "MIT",
   "dependencies": {
-    "@dreamworld/pwa-helpers": "^1.13.1",
-    "@webcomponents/webcomponentsjs": "2.2.10"
+    "@dreamworld/dw-tooltip": "^3.0.0",
+    "@dreamworld/pwa-helpers": "^1.13.1"
   },
   "devDependencies": {
     "@web/dev-server": "^0.1.34",

@@ -9,7 +9,8 @@
 ### Import
 - `import '@dreamworld/dw-ellipsis'`
 
-### Use
+### Used
+> Note: When content of this includes HTML tags. Make sure that those must be `inline` elements. e.g. `span`, `a` etc..
 - ```
   <dw-ellipsis>Your text here..</dw-ellipsis>
   ```
