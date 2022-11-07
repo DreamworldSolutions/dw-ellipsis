@@ -51,14 +51,17 @@ export class DwEllipsis extends LitElement {
     ${this._tooltipTemplate}
     `;
   }
+
   /**
    * When text overflows, shows text content in tooltip.
    */
   async _showTooltip() {
-    this._toolTipText = "ujjval";
+    if (this.scrollWidth <= this.offsetWidth){
+      return;
+    }
+    this._toolTipText = this.textContent;
     await this.updateComplete;
     this._toolTipEl && this._toolTipEl.show();
-
   }
 
   /**
