@@ -11,7 +11,14 @@ import '@dreamworld/dw-tooltip';
  *  <dw-ellipsis>Your text here.</dw-ellipsis>
  */
 export class DwEllipsis extends LitElement {
-  static styles = [css``];
+  static styles = [css`
+    :host {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  `];
 
   static properties = {
     /**

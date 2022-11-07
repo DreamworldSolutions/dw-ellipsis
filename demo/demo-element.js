@@ -9,12 +9,8 @@ class DemoElement extends LitElement {
           display:block;
         }
 
-        .abc { 
-          display: inline-block;
+        .first { 
           width: 50px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
         }
       `
     ]
@@ -22,7 +18,7 @@ class DemoElement extends LitElement {
   render() {
     return html`
       <h2>dw-ellipsis Demo:</h2>
-      <dw-ellipsis class = "abc"><strong>Hello World. Hello World</strong></dw-ellipsis><br>
+      <dw-ellipsis class="first"><strong>Hello World. Hello World</strong></dw-ellipsis><br>
       <dw-ellipsis><strong>Hello World. Hello World</strong></dw-ellipsis>
     `
   }
