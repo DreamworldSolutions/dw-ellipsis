@@ -18,7 +18,7 @@ class DemoElement extends LitElement {
   render() {
     return html`
       <h2>dw-ellipsis Demo:</h2>
-      <dw-ellipsis class="first"><strong>Hello World. Hello World</strong></dw-ellipsis><br>
+      <dw-ellipsis class="first" .placement=${"bottom"}><strong>Hello World. Hello World</strong></dw-ellipsis><br>
       <dw-ellipsis><strong>Hello World. Hello World</strong></dw-ellipsis>
     `
   }
