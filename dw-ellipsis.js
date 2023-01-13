@@ -11,7 +11,7 @@ const browserName = browser.getBrowserName();
  * Behaviors:
  *  - Applies ellipsis style when text overflows.
  *  - When user hovers on text & its overflowed, shows it in tooltip.
- *  - When using the Safari browser, the tooltip is not displayed. 
+ *  - When using the Safari browser, the tooltip is not displayed.
  *  - If the user wants a custom tooltip, They have to call the static method `showTooltipInSafari`.
  *
  * Usage pattern:
