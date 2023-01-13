@@ -1,11 +1,18 @@
 import { LitElement, html, css } from "@dreamworld/pwa-helpers/lit.js";
+import Bowser from "bowser";
 import "@dreamworld/dw-tooltip";
+
+const browser = Bowser.getParser(window.navigator.userAgent);
+const browserName = browser.getBrowserName();
+
 /**
  * Purpose: Shows ellipsis & full text in tooltip when it overflows.
  *
  * Behaviors:
  *  - Applies ellipsis style when text overflows.
  *  - When user hovers on text & its overflowed, shows it in tooltip.
+ *  - When using the Safari browser, the tooltip is not displayed. 
+ *  - If the user wants a custom tooltip, They have to call the static method `showTooltipInSafari`.
  *
  * Usage pattern:
  *  <dw-ellipsis>Your text here.</dw-ellipsis>
@@ -38,11 +45,22 @@ export class DwEllipsis extends LitElement {
     placement: {
       type: String,
     },
+
+    /**
+     * Input property.
+     * When text is overflow, tooltips are always shown in the Safari browser. This is the browser's default behavior. Thus, we need this property.
+     * If a property's value is true, our custom tooltip will be shown in the Safari browser.
+     * If a property's value is false, our custom tooltip will not be shown in the Safari browser.
+     */
+    showInSafari: {
+      type: Boolean,
+    },
   };
 
   constructor() {
     super();
     this.placement = "top";
+    this.showInSafari = false;
   }
 
   connectedCallback() {
@@ -55,6 +73,14 @@ export class DwEllipsis extends LitElement {
     if (!this._toolTipText) {
       return;
     }
+
+    if (browserName === "Safari") {
+      if (!this.showInSafari) {
+        this._hideTooltip;
+        return;
+      }
+    }
+
     return html`
       <dw-tooltip
         trigger="manual"
@@ -98,6 +124,10 @@ export class DwEllipsis extends LitElement {
     this._toolTipText = "";
     await this.updateComplete;
     this._tooltipEl && this._tooltipEl.hide();
+  }
+
+  static showTooltipInSafari() {
+    this.showInSafari = true;
   }
 }
 
