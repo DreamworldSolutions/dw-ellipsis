@@ -4,6 +4,7 @@ import "@dreamworld/dw-tooltip";
 
 const browser = Bowser.getParser(window.navigator.userAgent);
 const browserName = browser.getBrowserName();
+let showInSafari = false;
 
 /**
  * Purpose: Shows ellipsis & full text in tooltip when it overflows.
@@ -49,8 +50,8 @@ export class DwEllipsis extends LitElement {
     /**
      * Input property.
      * When text is overflow, tooltips are always shown in the Safari browser. This is the browser's default behavior. Thus, we need this property.
-     * If a property's value is true, our custom tooltip will be shown in the Safari browser.
-     * If a property's value is false, our custom tooltip will not be shown in the Safari browser.
+     * If a property's value is true, custom tooltip will be shown in the Safari browser.
+     * If a property's value is false, custom tooltip will not be shown in the Safari browser.
      */
     showInSafari: {
       type: Boolean,
@@ -60,7 +61,7 @@ export class DwEllipsis extends LitElement {
   constructor() {
     super();
     this.placement = "top";
-    this.showInSafari = false;
+    this.showInSafari = showInSafari;
   }
 
   connectedCallback() {
@@ -69,16 +70,19 @@ export class DwEllipsis extends LitElement {
     this.addEventListener("mouseleave", this._hideTooltip);
   }
 
+  willUpdate(changedProperties) {
+    if (changedProperties.has("showInSafari") && !this.showInSafari) {
+      this.showInSafari = showInSafari;
+    }
+  }
+
   get _tooltipTemplate() {
     if (!this._toolTipText) {
       return;
     }
 
-    if (browserName === "Safari") {
-      if (!this.showInSafari) {
-        this._hideTooltip;
-        return;
-      }
+    if (browserName === "Safari" && !this.showInSafari) {
+      return;
     }
 
     return html`
@@ -126,8 +130,11 @@ export class DwEllipsis extends LitElement {
     this._tooltipEl && this._tooltipEl.hide();
   }
 
+  /**
+   * It is used in the Safari browser to display tooltips. 
+   */
   static showTooltipInSafari() {
-    this.showInSafari = true;
+    showInSafari = true;
   }
 }
 
