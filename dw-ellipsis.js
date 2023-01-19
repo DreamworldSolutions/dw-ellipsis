@@ -45,23 +45,12 @@ export class DwEllipsis extends LitElement {
      */
     placement: {
       type: String,
-    },
-
-    /**
-     * Input property.
-     * When text is overflow, tooltips are always shown in the Safari browser. This is the browser's default behavior. Thus, we need this property.
-     * If a property's value is true, custom tooltip will be shown in the Safari browser.
-     * If a property's value is false, custom tooltip will not be shown in the Safari browser.
-     */
-    showInSafari: {
-      type: Boolean,
-    },
+    }
   };
 
   constructor() {
     super();
     this.placement = "top";
-    this.showInSafari = showInSafari;
   }
 
   connectedCallback() {
@@ -70,18 +59,12 @@ export class DwEllipsis extends LitElement {
     this.addEventListener("mouseleave", this._hideTooltip);
   }
 
-  willUpdate(changedProperties) {
-    if (changedProperties.has("showInSafari") && !this.showInSafari) {
-      this.showInSafari = showInSafari;
-    }
-  }
-
   get _tooltipTemplate() {
     if (!this._toolTipText) {
       return;
     }
 
-    if (browserName === "Safari" && !this.showInSafari) {
+    if (browserName === "Safari" && !showInSafari) {
       return;
     }
 
