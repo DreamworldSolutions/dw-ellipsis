@@ -12,8 +12,8 @@ let showInSafari = false;
  * Behaviors:
  *  - Applies ellipsis style when text overflows.
  *  - When user hovers on text & its overflowed, shows it in tooltip.
- *  - When using the Safari browser, the tooltip is not displayed.
- *  - If the user wants a custom tooltip, They have to call the static method `showTooltipInSafari`.
+ *  - The tooltip is not displayed in the Safari browser.
+ *  - using the static method `showTooltipInSafari` enable custom tooltips in Safari.
  *
  * Usage pattern:
  *  <dw-ellipsis>Your text here.</dw-ellipsis>
@@ -60,14 +60,10 @@ export class DwEllipsis extends LitElement {
   }
 
   get _tooltipTemplate() {
-    if (!this._toolTipText) {
+    if (!this._toolTipText || (browserName === "Safari" && !showInSafari)) {
       return;
     }
-
-    if (browserName === "Safari" && !showInSafari) {
-      return;
-    }
-
+    
     return html`
       <dw-tooltip
         trigger="manual"
