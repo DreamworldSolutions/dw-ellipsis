@@ -1,7 +1,7 @@
 # dw-ellipsis
 ## Introduction
 - An element to show ellipsis when it's text overflows (single line); and on hover shows full-text in the tooltip. Tooltip isn't shown when no ellipsis is applied to the text. 
-- __Note:__ The tooltip will not be displayed in the Safari browser. because when text is overflowing, tooltips are always shown in the Safari browser. This is the browser's default behavior. To enable custom tooltips in Safari, you can use the "showTooltipInSafari" method.
+- __Note:__ The tooltip will not be displayed in the Safari browser. because when text is overflowing, tooltips are always shown in the Safari browser. This is the browser's default behavior. To enable custom tooltips in Safari, you can use the "showTooltipInSafari" method. After enabling custom tooltips, two tooltips (the browser's default and custom) will appear in Safari.
 
 ## Installation Steps
 1. `yarn add @dreamworld/dw-ellipsis`
