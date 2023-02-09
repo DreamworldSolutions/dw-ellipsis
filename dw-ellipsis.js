@@ -19,34 +19,38 @@ let showInSafari = false;
  *  <dw-ellipsis>Your text here.</dw-ellipsis>
  */
 export class DwEllipsis extends LitElement {
-  static styles = [
-    css`
-      :host {
-        display: inline-block;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+  static get styles() {
+    return [
+      css`
+        :host {
+          display: inline-block;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      `,
+    ]
+  }
+
+  static get properties() {
+    return {
+      /**
+       * When ellipsis is applied, shows tooltip on hover.
+       */
+      _toolTipText: { type: String },
+
+      /**
+       * Input property
+       * Positions the tippy relative to its reference element.
+       * Use the suffix -start or -end to shift the tippy to the start or end of the reference element, instead of centering it.
+       * For example, "top-start" or  "left-end".
+       * Default value - 'top'
+       */
+      placement: {
+        type: String,
       }
-    `,
-  ];
-
-  static properties = {
-    /**
-     * When ellipsis is applied, shows tooltip on hover.
-     */
-    _toolTipText: { type: String },
-
-    /**
-     * Input property
-     * Positions the tippy relative to its reference element.
-     * Use the suffix -start or -end to shift the tippy to the start or end of the reference element, instead of centering it.
-     * For example, "top-start" or  "left-end".
-     * Default value - 'top'
-     */
-    placement: {
-      type: String,
-    }
-  };
+    };
+  }
 
   constructor() {
     super();
