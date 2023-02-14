@@ -1,9 +1,13 @@
 import { LitElement, html, css } from "@dreamworld/pwa-helpers/lit.js";
 import Bowser from "bowser";
 import "@dreamworld/dw-tooltip";
+import { isServer } from 'lit';
 
-const browser = Bowser.getParser(window.navigator.userAgent);
-const browserName = browser.getBrowserName();
+let browser, browserName;
+if(!isServer){
+  browser = Bowser.getParser(window.navigator.userAgent);
+  browserName = browser.getBrowserName();
+}
 let showInSafari = false;
 
 /**

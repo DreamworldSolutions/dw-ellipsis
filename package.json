@@ -3,6 +3,7 @@
   "version": "0.0.0-development",
   "description": "An Element to shows ellipsis when it's text overflows (single line); and on hover shows full-text in the tooltip. Tooltip isn't shown when no ellipsis is applied to the text.",
   "main": "dw-ellipsis.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "wds --node-resolve --app-index demo/index.html --open --watch"
