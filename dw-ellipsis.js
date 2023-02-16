@@ -1,7 +1,6 @@
-import { LitElement, html, css } from "@dreamworld/pwa-helpers/lit.js";
+import { LitElement, html, css, isServer} from "@dreamworld/pwa-helpers/lit.js";
 import Bowser from "bowser";
 import "@dreamworld/dw-tooltip";
-import { isServer } from '@dreamworld/pwa-helpers/lit.js';
 
 let browser, browserName;
 if(!isServer){
