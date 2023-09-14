@@ -2,6 +2,9 @@ import { LitElement, html, css, isServer} from "@dreamworld/pwa-helpers/lit.js";
 import Bowser from "bowser";
 import "@dreamworld/dw-tooltip";
 
+// DeviceInfo
+import DeviceInfo from '@dreamworld/device-info';
+
 let browser, browserName;
 if(!isServer){
   browser = Bowser.getParser(window.navigator.userAgent);
@@ -58,16 +61,28 @@ export class DwEllipsis extends LitElement {
   constructor() {
     super();
     this.placement = "top";
+    this._touchDevice = DeviceInfo.info().touch;
+    this._onTouchDeviceChange = this._onTouchDeviceChange.bind(this);
   }
 
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener("mouseenter", this._showTooltip);
     this.addEventListener("mouseleave", this._hideTooltip);
+    DeviceInfo.on('change', this._onTouchDeviceChange);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    DeviceInfo.off('change', this._onTouchDeviceChange);
+  }
+
+  _onTouchDeviceChange() {
+    this._touchDevice = DeviceInfo.info().touch;
   }
 
   get _tooltipTemplate() {
-    if (!this._toolTipText || (browserName === "Safari" && !showInSafari)) {
+    if (!this._toolTipText || (browserName === "Safari" && !showInSafari) || this._touchDevice) {
       return;
     }
     
