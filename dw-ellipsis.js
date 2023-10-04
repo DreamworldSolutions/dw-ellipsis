@@ -1,12 +1,9 @@
-import { LitElement, html, css, isServer} from "@dreamworld/pwa-helpers/lit.js";
+import { LitElement, html, css, isServer } from "@dreamworld/pwa-helpers/lit.js";
 import Bowser from "bowser";
 import "@dreamworld/dw-tooltip";
 
-// DeviceInfo
-import DeviceInfo from '@dreamworld/device-info';
-
 let browser, browserName;
-if(!isServer){
+if (!isServer) {
   browser = Bowser.getParser(window.navigator.userAgent);
   browserName = browser.getBrowserName();
 }
@@ -35,7 +32,7 @@ export class DwEllipsis extends LitElement {
           text-overflow: ellipsis;
         }
       `,
-    ]
+    ];
   }
 
   static get properties() {
@@ -59,42 +56,30 @@ export class DwEllipsis extends LitElement {
       /**
        * Input property.
        * Default value false
-       * When true tooltip is not shown in touch devices.
+       * When true tooltip is not shown.
        */
       noTooltip: {
-        type: Boolean
-      }
+        type: Boolean,
+      },
     };
   }
 
   constructor() {
     super();
     this.placement = "top";
-    this._touchDevice = DeviceInfo.info().touch;
-    this._onTouchDeviceChange = this._onTouchDeviceChange.bind(this);
   }
 
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener("mouseenter", this._showTooltip);
     this.addEventListener("mouseleave", this._hideTooltip);
-    DeviceInfo.on('change', this._onTouchDeviceChange);
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    DeviceInfo.off('change', this._onTouchDeviceChange);
-  }
-
-  _onTouchDeviceChange() {
-    this._touchDevice = DeviceInfo.info().touch;
   }
 
   get _tooltipTemplate() {
-    if (!this._toolTipText || (browserName === "Safari" && !showInSafari) || (this._touchDevice && this.noTooltip)) {
+    if (!this._toolTipText || (browserName === "Safari" && !showInSafari) || this.noTooltip) {
       return;
     }
-    
+
     return html`
       <dw-tooltip
         trigger="manual"
@@ -141,7 +126,7 @@ export class DwEllipsis extends LitElement {
   }
 
   /**
-   * It is used in the Safari browser to display tooltips. 
+   * It is used in the Safari browser to display tooltips.
    */
   static showTooltipInSafari() {
     showInSafari = true;
