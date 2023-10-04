@@ -54,6 +54,15 @@ export class DwEllipsis extends LitElement {
        */
       placement: {
         type: String,
+      },
+
+      /**
+       * Input property.
+       * Default value false
+       * When true tooltip is not shown in touch devices.
+       */
+      noTooltip: {
+        type: Boolean
       }
     };
   }
@@ -82,7 +91,7 @@ export class DwEllipsis extends LitElement {
   }
 
   get _tooltipTemplate() {
-    if (!this._toolTipText || (browserName === "Safari" && !showInSafari) || this._touchDevice) {
+    if (!this._toolTipText || (browserName === "Safari" && !showInSafari) || (this._touchDevice && this.noTooltip)) {
       return;
     }
     
