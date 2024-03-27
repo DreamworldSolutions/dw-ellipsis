@@ -66,7 +66,7 @@ export class DwEllipsis extends LitElement {
 
   constructor() {
     super();
-    this.placement = "top";
+    this.placement = "bottom";
   }
 
   connectedCallback() {
