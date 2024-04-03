@@ -85,7 +85,7 @@ export class DwEllipsis extends LitElement {
         trigger="manual"
         .forEl=${this}
         .offset=${[0, 8]}
-        .extraOptions=${{ delay: [500, 0] }}
+        .extraOptions=${{ delay: [500, 0], zIndex: 11111 }}
         .content=${this._toolTipText}
         .placement=${this.placement}
       >
